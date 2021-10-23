@@ -1,3 +1,5 @@
+import LeakTest
+import safePass
 print("Welcome To Password Manager\n")
 while(True):
     ch = int(input("Please Enter Your choice\n1.Show All Passwords\n2.Add New Password\n"))
@@ -10,6 +12,14 @@ while(True):
         name = input("Please Name Of The Website Or Thing For Which Your Saving Password\n")
         uname = input("Please Enter Your Username\n")
         pwd = input("Please Enter Your Password\n")
+        if(safePass.check(pwd)):
+            pass
+        else:
+            print("Warning Please Check Your Password Its Not The Safe")
+        if(LeakTest.check(pwd)):
+            pass
+        else:
+            print("Warning Please Check Your Password Its Been Leaked In DarkWeb")
 
         with open('db.txt','a+') as fp:
             fp.write(f'["{name}","{uname}","{pwd}"]\n')
